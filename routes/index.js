@@ -7,4 +7,6 @@ router.get('/',homeController.home);
 
 router.use('/users',require('./user'));
 
+router.use('/habits',require('./habits'))
+
 module.exports=router;

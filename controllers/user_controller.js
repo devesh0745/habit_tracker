@@ -1,4 +1,6 @@
 const User=require('../models/user');
+const Habit=require('../models/habit');
+const Dates=require('../models/dates');
 
 module.exports.signUp=function(req,res){
     return res.render('sign_up',{
@@ -38,9 +40,33 @@ module.exports.createSession=async function(req,res){
 }
 
 module.exports.dailyHabit=async function(req,res){
+    const user=await User.findById(req.user._id).populate({
+                                                    path: 'habit',
+                                                        populate: { path: 'dates',model:'Dates',select: 'status date' }
+                                                        });;
     return res.render('daily_habit',{
-        title:'Habit Tracker'
+        title:'Habit Tracker',
+        user:user
     })
+}
+
+module.exports.weeklyTracker=async function(req,res){
+    try{
+    const user=await User.findById(req.user._id).populate('habit');
+    console.log(req.body.user_habit);
+    const habit_tracker=await Habit.findById(req.body.user_habit).populate('dates');
+
+  //  console.log('weekly trackerrrrrr',habit_tracker);
+  //  console.log('#############',sevenDaysData);
+    return res.render('weekly_tracker',{
+        title:'Habit Tracker',
+        weekly_tracker:habit_tracker
+     //   weekly_tracker:req.body.user_habit
+
+    })
+    }catch(err){
+        console.log('error',err);
+    }
 }
 
 module.exports.destroySession=function(req,res){

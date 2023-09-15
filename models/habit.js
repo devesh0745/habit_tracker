@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 
 const habitSchema=new mongoose.Schema({
-    habit_title:{
+    habit_name:{
         type:String,
         required:true   
     },
@@ -9,13 +9,14 @@ const habitSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
-    habit_desc:{
-        type:String,
-    }
+    dates:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Dates'    
+    }]
 },{
     timestamps:true
 });
 
 const Habit=mongoose.model('Habit',habitSchema);
 
-module.exports=Habit
+module.exports=Habit;

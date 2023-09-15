@@ -32,7 +32,7 @@ passport.serializeUser(function(user,done){
 });
 
 passport.deserializeUser(async function(id,done){
-    console.log('*******deserilizing user*********');
+   // console.log('*******deserilizing user*********');
     try{
         const user=await User.findById(id);
         return done(null,user);
@@ -46,7 +46,7 @@ passport.checkAuthentication=function(req,res,next){
     if(req.isAuthenticated()){
         return next();
     }
-    return res.redirect('/user/sign-in');
+    return res.redirect('/users/sign-in');
 }
 passport.setAuthenticatedUser=function(req,res,next){
     if(req.isAuthenticated()){

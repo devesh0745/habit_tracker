@@ -1,0 +1,37 @@
+<link rel="stylesheet" type="text/css" href="/css/weekly_tracker.css">
+
+<h1>Weekly Tracker</h1>
+<div id="weekly-box">
+<a href="/users/daily-habit">
+    <button>Daily Habits</button>
+</a>
+<h5><%=weekly_tracker.habit_name%></h5>
+<% const today = new Date(); %>
+<table>
+    
+<% for (let i = 0; i < 7; i++) { %>
+    <% const day = new Date(today.getTime() - i * 24 * 60 * 60 * 1000); %> 
+    <%let days=day.toDateString()%>
+    <tr>
+    <th><%= day.toDateString() %></th>
+    <th>
+    <form action="/habits/update-habit-weekly/<%=weekly_tracker._id%>" method="post">
+        <input type="hidden" name="day" value="<%=days%>">
+        <select name="status" id="">
+            <option  value="None">None</option>
+            <option value="Done">Done</option>
+            <option value="Not Done">Not Done</option>
+        </select>
+        <input type="submit" name="" id="" value="Status">
+    </form> 
+    <%for(let dates of weekly_tracker.dates) {%>
+       <% if(dates.date.toDateString()==days){%>
+       
+            <span><%=dates.status%></span> 
+        <%}%>
+    <%}%>
+    </th>
+    </tr>
+<%}%>
+</table>   
+</div>

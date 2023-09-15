@@ -1,3 +1,11 @@
 h1{
-    margin: 10%;
+    margin-top: 10%;
+    margin-bottom: 4%;
 }
+.input-group{
+    width:30vw;
+    text-align: center;
+}
+/*#tracker-btn{
+    margin-top: 10%;
+}*/
