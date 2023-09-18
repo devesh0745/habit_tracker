@@ -52,11 +52,12 @@ module.exports.dailyHabit=async function(req,res){
 
 module.exports.weeklyTracker=async function(req,res){
     try{
+  //  console.log('working');
     const user=await User.findById(req.user._id).populate('habit');
-    console.log(req.body.user_habit);
-    const habit_tracker=await Habit.findById(req.body.user_habit).populate('dates');
+   // console.log(req.body.user_habit);
+    const habit_tracker=await Habit.findById(req.params.id).populate('dates');
 
-  //  console.log('weekly trackerrrrrr',habit_tracker);
+   // console.log('weekly trackerrrrrr',req.body.user_habit);
   //  console.log('#############',sevenDaysData);
     return res.render('weekly_tracker',{
         title:'Habit Tracker',
@@ -66,6 +67,7 @@ module.exports.weeklyTracker=async function(req,res){
     })
     }catch(err){
         console.log('error',err);
+        return res.redirect('back')
     }
 }
 

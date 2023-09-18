@@ -1,9 +1,11 @@
+<link rel="stylesheet" href="/css/_header.css">
+
 <header>
     <nav class="navbar fixed-top navbar-light bg-light nav-bar">
         <div class="container-fluid">
         <div>
-          <a class="navbar-brand" href="#">
-            <i class="fa-brands fa-quora"></i>
+          <a class="navbar-brand" href="#" style="font-size:x-large;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+            <i class="fa-regular fa-clock"></i>
             Habit Tracker
           </a>
         </div>
@@ -11,9 +13,7 @@
           <ul class="nav-list">
             <%if (locals.user) {%>
                 <li id="home-icon-placing">
-                    <a href="/">
-                     <span id="home-icon"><i class="fa-solid fa-house-user fa-2x"></i></span>
-                      </a>
+          
                 </li>
                 <li ><span id="name-tag"><%=user.name%></span></li>
                 <li>

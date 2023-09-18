@@ -1,11 +1,124 @@
-h1{
-    margin-top: 10%;
-    margin-bottom: 4%;
-}
-.input-group{
-    width:30vw;
+#main-box{
+    display: flex;
+    flex-direction: column;
+  /*  border: 1px solid black;*/
+    margin-top: 7%;
+    margin-left: 26%;
+    width: 50vw;
     text-align: center;
 }
-/*#tracker-btn{
-    margin-top: 10%;
-}*/
+#heading-input{
+  /*  border: 1px solid green;*/
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+    color: lightblue;
+}
+#heading-input > h4{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size:xx-large;
+}
+
+.input-group{
+    width:25vw;
+    text-align: center;
+    margin-left: 23%;
+    margin-top: 5%;
+}
+/*#daily-habit-info{*/
+ /*   border: 1px solid rebeccapurple;*/
+/*}*/
+#daily-list{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction:column;
+    margin-right: 2%;
+    margin-top: 5%;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:lightsteelblue;
+    background:#1A5276;
+}
+#daily-list:hover{
+    -webkit-transform:scale(0.9);
+    -moz-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+  }
+  
+
+#daily-list > li{
+    list-style: none;
+}
+#habit-del-date{
+  /*  border: 1px solid yellow;*/
+    display: flex;
+    flex-direction: row;
+   justify-content: space-between;
+}
+#habit-del-date> p{
+    font-size: 2rem;
+    padding-left: 4%;
+    padding-top: 1%;
+}
+.delete-post-button{
+    color: black;
+}
+#date-del{
+  /*  border: 1px solid blue;*/
+    display: flex;
+    flex-direction: row;
+}
+#date-del > span{
+    padding-top: 3%;
+}
+#weekly-status{
+   /* border: 1px solid fuchsia;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#weekly-status > a{
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 12vw;
+    height: 6vh;
+    margin-top: 1%;
+    margin-left: 2%;
+}
+#weekly-status:hover{
+    -webkit-transform:scale(0.9);
+    -moz-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+  }
+  
+
+#select-status{
+  /*  border: 1px solid gray;*/
+    display: flex;
+    flex-direction: row;
+    padding-top: 2%;
+    width: 20vw;
+    padding-right: 2%;
+}
+#select-status > form{
+    margin-right: 15%;
+}
+#select-status > form > select{
+    border-radius: 5px;
+}
+#submit-status{
+    border-radius: 5px;
+    background-color: white;
+    border: 0.5px solid black;
+} 
+
+#status{
+    border: 1px solid black;
+    height: 4vh;
+    width: 6vw;
+    border-radius: 5px;
+}

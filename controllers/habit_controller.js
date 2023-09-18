@@ -74,18 +74,18 @@ module.exports.updateStatusDaily=async function(req,res){
 
 module.exports.updateStatusWeekly=async function(req,res){
         try{
-           // console.log('running.....',req.params.id)
             const habit=await Habit.findById(req.params.id).populate('dates');
-            //console.log('habit:',habit);
+          //  console.log(habit);
             const dates=await Dates.find({habit:habit._id});
             let updatingStatusDate=req.body.day
-            console.log('******date:',updatingStatusDate);
+            console.log(updatingStatusDate);
             let obj=dates.find(o => o.date.toDateString()==updatingStatusDate);
-            console.log('obj:',obj);
+        
             if(obj){
                 const date=await Dates.findById(obj._id);
                 date.status=req.body.status
                 date.save();
+             //   console.log("running.....")
                 return res.redirect('back');
             }else{
                 if(req.body.status){
@@ -114,7 +114,8 @@ module.exports.updateStatusWeekly=async function(req,res){
 }
 
 module.exports.deleteHabit=async function(req,res){
-    const habit=await Habit.findByIdAndDelete(req.params.id);
+    await Dates.deleteMany({habit:req.params.id})
+    await Habit.findByIdAndDelete(req.params.id);
     const pullHabit=await User.findByIdAndUpdate(req.user.id,{$pull:{habit:req.params.id}});
-    return res.redirect('back');
+    return res.redirect('/users/daily-habit');
 }

@@ -1,45 +1,57 @@
 <link rel="stylesheet" type="text/css" href="/css/daily_habits.css">
-<h1>Daily Habits</h1>
 
-<form action="/habits/habit-name" method="post">
-<div class="input-group ">
-    <input name="habit" type="text" class="form-control" placeholder="Add Habit....." aria-label="Recipient's username" aria-describedby="button-addon2" required>
-    <button class="btn btn-outline-secondary" type="Submit" id="button-addon2">Add Habit</button>
-  </div>
-</form>
+<div id="main-box">
+    <div id="heading-input">
+        <h4>Daily Habits</h4>
+        <form action="/habits/habit-name" method="post">
+            <div class="input-group ">
+                <input name="habit" type="text" class="form-control" placeholder="Add Habit....." aria-label="Recipient's username" aria-describedby="button-addon2" required>
+                <button class="btn btn-outline-secondary" type="Submit" id="button-addon2">Add Habit</button>
+            </div>  
+        </form>
+    </div>
 
-<%if(locals.user) {%>
+    <div id="daily-habit-info">
+    <%if(locals.user) {%>
+        <%if(user.habit.length==0) {%>
+            <span>Your daily habit track is empty....Add something</span>
+        <%}%>
     <ul>
         <%for(userHabit of user.habit) {%>
+            <div id="daily-list">
             <li>
-                <p><%=userHabit.habit_name%></p>
-                <span><%=userHabit.createdAt.toDateString()%></span>
-                <a class="delete-post-button" href="/habits/delete-habit/<%=userHabit._id%>">
-                    <i class="fa-solid fa-trash"></i>
-                </a>
-            
-                <form  id="tracker-btn" action="/users/weekly-tracker" method="post">
-                    <input type="hidden" name="user_habit" id="" value="<%=userHabit._id%>">
-                    <button type="submit">Weekly Tracker</button>
-                </form>
-                <div>
+                <div id="habit-del-date">
+                    <p><%=userHabit.habit_name%></p>
+                    <div id="date-del">
+                        <span><%=userHabit.createdAt.toDateString()%></span>
+                        <a class="delete-post-button" href="/habits/delete-habit/<%=userHabit._id%>">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id="weekly-status">
+                <a href="/users/weekly-tracker/<%=userHabit._id%>">Weekly Tracker</a>
+                <div id="select-status">
                 <form action="/habits/update-habit-daily/<%=userHabit._id%>" method="post">
-                    <select name="status" id="">
-                        <option  value="None">None</option>
+                    <select name="status" id="" >
                         <option value="Done">Done</option>
                         <option value="Not Done">Not Done</option>
                     </select>
-                    <input type="submit" name="" id="" value="Status">
+                    <input type="submit" name="" id="submit-status" value="Status">
                 </form>
+                    
                 <%for(let dates of userHabit.dates) {%>
                     <% if(dates.date.toDateString()==userHabit.createdAt.toDateString()){%>
-                        <span><%=dates.status%></span> 
+                        <span id="status"><%=dates.status%></span> 
                     <%}%>
                  <%}%>
                 </div>
+                </div>
             </li>
-           
+            </div>
         <%}%>
     </ul>
     
-<%}%>    
+<%}%> 
+</div> 
+</div>  

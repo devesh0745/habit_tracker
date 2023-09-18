@@ -15,7 +15,7 @@ router.post('/create-session',passport.authenticate('local',{failureRedirect:'/u
 
 router.get('/daily-habit',passport.checkAuthentication,userController.dailyHabit);
 
-router.post('/weekly-tracker',passport.checkAuthentication,userController.weeklyTracker);
+router.get('/weekly-tracker/:id',passport.checkAuthentication,userController.weeklyTracker);
 
 router.get('/sign-out',userController.destroySession);
 
