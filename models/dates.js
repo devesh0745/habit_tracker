@@ -1,3 +1,4 @@
+//Creatung date schema that will have the status of that date.
 const mongoose=require('mongoose');
 
 const dateSchema=new mongoose.Schema({

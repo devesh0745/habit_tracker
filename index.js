@@ -4,10 +4,13 @@ const app=express();
 const port=2000;
 const expressLayouts=require('express-ejs-layouts');
 const db=require('./config/mongoose');
-const session=require('express-session');
+//Used for Authentication.
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 const MongoStore=require('connect-mongo');
+//used for session cookie
+const session=require('express-session');
+
 
 app.use(express.urlencoded());
 
@@ -17,9 +20,12 @@ app.use(express.static('./assests'));
 
 app.use(expressLayouts);
 
+//Setting up view engine
 app.set('view engine','ejs');
 app.set('views','./views')
 
+
+//For Storing session cookies(using mongo store)
 app.use(session({
     store:MongoStore.create({
         mongoUrl:"mongodb://0.0.0.0/habitTracker_development",
@@ -33,7 +39,7 @@ app.use(session({
         }
     }),
     name:'Habit Tracker',
-    secret:"Something",
+    secret:"Habit_tracker",
     saveUninitialized:false,
     resave:false,
     cookie:{maxAge:(1000*60*100)}

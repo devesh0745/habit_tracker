@@ -1,3 +1,4 @@
+//Creating user schema to store users details.
 const mongoose=require('mongoose');
 
 const userSchema=new mongoose.Schema({
@@ -14,6 +15,7 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    //It will have the list of all the habits user has created
     habit:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Habit'

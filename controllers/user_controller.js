@@ -1,18 +1,23 @@
+//Getting all the models.
 const User=require('../models/user');
 const Habit=require('../models/habit');
 const Dates=require('../models/dates');
 
+//Rendering Sign-up page
 module.exports.signUp=function(req,res){
     return res.render('sign_up',{
         title:'Habit Tracker'
     })
 };
+
+//Rendering Sign-in page
 module.exports.signIn=function(req,res){
     return res.render('sign_in',{
         title:'Habit Tracker'
     })
 };
 
+//Using function to create a user using local Authentication.
 module.exports.createUser=async function(req,res){
     if(req.body.password!=req.body.confirm_password){
         console.log('Password Not Matching');
@@ -21,6 +26,7 @@ module.exports.createUser=async function(req,res){
     try{
         const user=await User.findOne({email:req.body.email});
         if(!user){
+            //It will create a yser if user not exits
             const user=await User.create(req.body);
             console.log('User created');
             return res.redirect('/users/sign-in');
@@ -34,11 +40,13 @@ module.exports.createUser=async function(req,res){
     }
 }
 
+//Direct it to home page when user is login.
 module.exports.createSession=async function(req,res){
     console.log('Logged in Successfully');
     return res.redirect('/');
 }
 
+//Displaying all the daily habits on home page.
 module.exports.dailyHabit=async function(req,res){
     const user=await User.findById(req.user._id).populate({
                                                     path: 'habit',
@@ -50,20 +58,15 @@ module.exports.dailyHabit=async function(req,res){
     })
 }
 
+//Rendering weekly tracker page.
 module.exports.weeklyTracker=async function(req,res){
     try{
-  //  console.log('working');
-    const user=await User.findById(req.user._id).populate('habit');
-   // console.log(req.body.user_habit);
-    const habit_tracker=await Habit.findById(req.params.id).populate('dates');
-
-   // console.log('weekly trackerrrrrr',req.body.user_habit);
-  //  console.log('#############',sevenDaysData);
-    return res.render('weekly_tracker',{
+      const user=await User.findById(req.user._id).populate('habit');
+      const habit_tracker=await Habit.findById(req.params.id).populate('dates');
+         return res.render('weekly_tracker',{
         title:'Habit Tracker',
         weekly_tracker:habit_tracker
-     //   weekly_tracker:req.body.user_habit
-
+  
     })
     }catch(err){
         console.log('error',err);
@@ -71,6 +74,7 @@ module.exports.weeklyTracker=async function(req,res){
     }
 }
 
+//Deleting the habit.
 module.exports.destroySession=function(req,res){
     req.logout(function(err){
         if(err){return next(err); }
