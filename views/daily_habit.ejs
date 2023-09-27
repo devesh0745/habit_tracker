@@ -15,7 +15,7 @@
     <div id="daily-habit-info">
     <%if(locals.user) {%>
         <%if(user.habit.length==0) {%>
-            <span>Your daily habit track is empty....Add something</span>
+            <span id="zero-habits">Your daily habit track is empty....Add something</span>
         <%}%>
     <ul>
         <%for(userHabit of user.habit) {%>
