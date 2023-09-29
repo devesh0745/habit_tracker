@@ -1,7 +1,7 @@
 //Setting up the database
 const mongoose=require('mongoose');
 require("dotenv").config();
-//console.log('')
+//console.log('**')
 
 mongoose.connect(process.env.MONGODB);
 
