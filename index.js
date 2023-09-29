@@ -2,6 +2,7 @@ const express=require('express');
 const cookieParser=require('cookie-parser');
 const app=express();
 const port=2000;
+require("dotenv").config();
 const expressLayouts=require('express-ejs-layouts');
 const db=require('./config/mongoose');
 //Used for Authentication.
@@ -28,7 +29,7 @@ app.set('views','./views')
 //For Storing session cookies(using mongo store)
 app.use(session({
     store:MongoStore.create({
-        mongoUrl:"mongodb://0.0.0.0/habitTracker_development",
+        mongoUrl:process.env.MONGODB,
         autoRemove:'disabled'
     },
     async function(err){
